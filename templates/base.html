@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+  {% block title %}
+    <title>Title</title>
+  {% endblock %}
+</head>
+<body>
+
+    {% includes 'sidebar.html' %}
+    <div style="margin-left:400px;margin-top:15px">
+      {% block content %}
+      {% endblock %}
+    </div>
+</body>
+</html>

@@ -10,9 +10,12 @@
     <div style="border-radius: 25px; background: #73AD21; padding: 20px;">
       {% if task.do_status %}
         <h3 class="w3-border-light-green">Done!</h3>
+        <a class="btn w3-btn" href="{% url 'catalog:undo_task' pk=task.id %}">Undo</a>
       {% else %}
         <h3 class="w3-border-yellow">Progress!</h3>
+        <a class="btn w3-btn" href="{% url 'catalog:complete_task' pk=task.id %}">Complete</a>
       {% endif %}
+      <br>
       <p>{{ task.content }}</p>
       <p>Date: {{ task.date }}</p>
       <p>Deadline: {{ task.deadline }}</p>

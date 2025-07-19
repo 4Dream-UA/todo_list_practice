@@ -45,7 +45,7 @@ class TasksCreateView(CreateView):
     model = Task
     template_name = "catalog/tasks_date.html"
     context_object_name = "tasks"
-    fields = ["content", "date", "tags", "deadline"]
+    fields = ["content", "tags", "deadline"]
     success_url = reverse_lazy("catalog:tasks")
 
 
@@ -59,7 +59,7 @@ class TasksUpdateView(UpdateView):
     model = Task
     template_name = "catalog/tasks_date.html"
     context_object_name = "tasks"
-    fields = ["content", "date", "tags", "deadline"]
+    fields = ["content", "tags", "deadline"]
     success_url = reverse_lazy("catalog:tasks")
 
 

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Tags!</h1>
+  <a class="btn btn-primary" href="{% url 'catalog:create_tag' %}">Add Tag</a>
+  <br><br><br>
+
+  {% for tag in tags %}
+    <div style="border-radius: 25px; background: #73AD21; padding: 20px;">
+      <p>{{ tag }}</p>
+      <i><a class="btn btn-primary" href="{% url 'catalog:update_tag' pk=tag.id %}">Edit</a> |
+        <a class="btn btn-danger" href="{% url 'catalog:delete_tag' pk=tag.id %}">Delete</a></i>
+    </div>
+    <br>
+  {% empty %}
+
+    <p>Nothing...</p>
+  {% endfor %}
+{% endblock %}

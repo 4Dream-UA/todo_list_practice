@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Tasks!</h1>
+  <a class="btn btn-primary" href="{% url 'catalog:create_task' %}">Add Task</a>
+  <br><br><br>
+
+  {% for task in tasks %}
+    <div style="border-radius: 25px; background: #73AD21; padding: 20px;">
+      {% if task.do_status %}
+        <h3 class="w3-border-light-green">Done!</h3>
+        <a class="btn w3-btn" href="{% url 'catalog:undo_task' pk=task.id %}">Undo</a>
+      {% else %}
+        <h3 class="w3-border-yellow">Progress!</h3>
+        <a class="btn w3-btn" href="{% url 'catalog:complete_task' pk=task.id %}">Complete</a>
+      {% endif %}
+      <br>
+      <p>{{ task.content }}</p>
+      <p>Date: {{ task.date }}</p>
+      <p>Deadline: {{ task.deadline }}</p>
+      <h3>Tags:</h3>
+      {% for tag in task.tags.all %}
+        <p>{{ tag.tag }}</p>
+      {% endfor %}
+
+      <i><a class="btn btn-primary" href="{% url 'catalog:update_task' pk=task.id %}">Edit</a> |
+        <a class="btn btn-danger" href="{% url 'catalog:delete_task' pk=task.id %}">Delete</a></i>
+    </div>
+    <br>
+  {% empty %}
+
+    <p>Nothing...</p>
+  {% endfor %}
+{% endblock %}

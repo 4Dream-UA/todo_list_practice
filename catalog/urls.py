@@ -4,7 +4,8 @@ from django.urls import path
 from .views import (
     IndexView, TagsCreateView, TagsListView,
     TagsUpdateView, TagsDeleteView, TasksListView,
-    TasksCreateView, TasksUpdateView, TasksDeleteView
+    TasksCreateView, TasksUpdateView, TasksDeleteView,
+    TaskCompleteView, TasksUndoView
 )
 
 app_name = "catalog"
@@ -21,4 +22,7 @@ urlpatterns = [
     path("tasks/", TasksListView.as_view(), name="tasks"),
     path("update_task/<int:pk>/", TasksUpdateView.as_view(), name="update_task"),
     path("delete_task/<int:pk>/", TasksDeleteView.as_view(), name="delete_task"),
+
+    path("undo_task/<int:pk>", TasksCreateView.as_view(), name="undo_task"),
+    path("complete_task/<int:pk>", TaskCompleteView.as_view(), name="complete_task"),
 ]

@@ -45,7 +45,7 @@ class TasksCreateView(CreateView):
     model = Task
     template_name = "catalog/tasks_date.html"
     context_object_name = "tasks"
-    fields = "__all__"
+    fields = ["content", "date", "tags", "deadline"]
     success_url = reverse_lazy("catalog:tasks")
 
 
@@ -59,11 +59,28 @@ class TasksUpdateView(UpdateView):
     model = Task
     template_name = "catalog/tasks_date.html"
     context_object_name = "tasks"
-    fields = "__all__"
+    fields = ["content", "date", "tags", "deadline"]
     success_url = reverse_lazy("catalog:tasks")
+
 
 class TasksDeleteView(DeleteView):
     model = Task
     template_name = "catalog/tasks_delete.html"
     context_object_name = "tasks"
+    success_url = reverse_lazy("catalog:tasks")
+
+
+class TasksUndoView(UpdateView):
+    model = Task
+    template_name = "catalog/tasks_undo.html"
+    context_object_name = "tasks"
+    fields = ["do_status"]
+    success_url = reverse_lazy("catalog:tasks")
+
+
+class TaskCompleteView(UpdateView):
+    model = Task
+    template_name = "catalog/task_complete.html"
+    context_object_name = "task"
+    fields = ["do_status"]
     success_url = reverse_lazy("catalog:tasks")
